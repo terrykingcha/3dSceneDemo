@@ -19,10 +19,10 @@ function Scene() {
     /* 摄像头 */
     var VIEW_ANGLE = 45;
     var ASPECT = WIDTH / HEIGHT;
-    var NEAR = 0.1;
-    var FAR = 20000;
+    var NEAR = 1;
+    var FAR = 100000;
     var camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR); /* 摄像机视角，视口长宽比，近切面，远切面 */
-    camera.position.set(1000, 1000, 1000); //放置位置
+    camera.position.set(0, 0, 1000); //放置位置
     scene.add(camera);
     this.camera = camera;
 
@@ -53,7 +53,7 @@ function Scene() {
 
     var planes = [];
     var meshs = [];
-    var planeUnit = 200;
+    var planeUnit = 500;
     var planeLength = 3;
     var planeSegment = 3;
     var size = [planeLength * planeUnit, planeLength * planeUnit / planeSegment];
@@ -77,14 +77,14 @@ function Scene() {
     /* 控制器 */
     var constrols;
     controls = new THREE.TrackballControls(camera);
-    controls.rotateSpeed = 1.0;
-    controls.zoomSpeed = 1.2;
-    controls.panSpeed = 0.8;
-    controls.noZoom = false;
-    controls.noPan = false;
-    controls.staticMoving = true;
-    controls.dynamicDampingFactor = 0.3;
-    controls.keys = [65, 83, 68];
+    // controls.rotateSpeed = 1.0;
+    // controls.zoomSpeed = 1.2;
+    // controls.panSpeed = 0.8;
+    controls.noZoom = true;
+    controls.noPan = true;
+    // controls.staticMoving = false;
+    // controls.dynamicDampingFactor = 0.3;
+    // controls.keys = [65, 83, 68];
     controls.addEventListener('change', function() {
         that.render();
     });

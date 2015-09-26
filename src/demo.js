@@ -15,7 +15,11 @@
         scene.setTexture(visualizer.cosCanvas[0], 1);
         scene.setTexture(visualizer.cosCanvas[2], 2);
         scene.setTexture(visualizer.cosCanvas[3], 3);
-
+        scene.setTexture(visualizer.cosCanvas[5], 4);
+        scene.setTexture(visualizer.cosCanvas[8], 5);
+        scene.setTexture(visualizer.cosCanvas[11], 6);
+        scene.setTexture(visualizer.cosCanvas[14], 7);
+        scene.setTexture(visualizer.freqCanvas, 8);
     });
 
     (function tick() {
@@ -29,6 +33,10 @@
             visualizer.drawCos(0);
             visualizer.drawCos(2);
             visualizer.drawCos(3);
+            visualizer.drawCos(5);
+            visualizer.drawCos(8);
+            visualizer.drawCos(11);
+            visualizer.drawCos(14);
 
             scene.updateTexture();
             scene.render();

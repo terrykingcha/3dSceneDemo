@@ -205,10 +205,10 @@ Visualizer.prototype.drawCos = function(i) {
     var value = this.freqs[i];
     var percent = value / 256;
     var height = this.height * percent / 2;
-    var width = this.width / 720;
+    var width = this.width / 360;
 
     var x = canvas.translateX || 0;
-    canvas.translateX = (x + width) % width;
+    canvas.translateX = (x + width) % this.width;
 
     var y = this.height / 2;
     var hue = i / this.analyser.frequencyBinCount * 360;
