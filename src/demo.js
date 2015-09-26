@@ -3,6 +3,10 @@
     document.body.appendChild(scene.renderer.domElement);
     scene.render();
 
+    window.scene = scene.scene;
+    window.camera = scene.camera;
+    window.renderer = scene.renderer;
+
     window.addEventListener('resize', function() {
         scene.resize();
     });

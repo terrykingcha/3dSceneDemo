@@ -17,7 +17,7 @@ function Scene() {
     this.renderer = renderer;
 
     /* 摄像头 */
-    var VIEW_ANGLE = 45;
+    var VIEW_ANGLE = 100;
     var ASPECT = WIDTH / HEIGHT;
     var NEAR = 1;
     var FAR = 100000;
@@ -80,7 +80,7 @@ function Scene() {
     // controls.rotateSpeed = 1.0;
     // controls.zoomSpeed = 1.2;
     // controls.panSpeed = 0.8;
-    controls.noZoom = true;
+    controls.noZoom = false;
     controls.noPan = true;
     // controls.staticMoving = false;
     // controls.dynamicDampingFactor = 0.3;
