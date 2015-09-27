@@ -118,6 +118,12 @@ function Visualizer(callback) {
     this.startTime = 0;
     this.startOffset = 0;
 
+    this.loadDeferred = {};
+    this.loadDeferred.promise = new Promise(function(resolve, reject) {
+        that.loadDeferred.resolve = resolve;
+        that.loadDeferred.reject = reject;
+    });
+
     this.freqCanvas = document.createElement('canvas');
     this.timeCanvas = document.createElement('canvas');
     this.cosCanvas = [];
@@ -126,10 +132,21 @@ function Visualizer(callback) {
     }
 }
 
-Visualizer.prototype.load = function(path, callback) {
+Visualizer.prototype.ready = function() {
+    return this.loadDeferred.promise;
+}
+
+Visualizer.prototype.load = function(path) {
+    var that = this;
+
     loadSounds(this, {
         buffer: path,
-    }, callback);
+    }, function() {
+        that.togglePlayback();
+        that.loadDeferred.resolve();
+    });
+
+    return that.loadDeferred.promise;
 }
 
 // Toggle playback
@@ -156,20 +173,18 @@ Visualizer.prototype.togglePlayback = function() {
     this.isPlaying = !this.isPlaying;
 }
 
-Visualizer.prototype.draw = function(width, height) {
-    this.width = width;
-    this.height = height;
-
+Visualizer.prototype.analysis = function() {
     this.analyser.smoothingTimeConstant = SMOOTHING;
     this.analyser.fftSize = FFT_SIZE;
 
     // Get the frequency data from the currently playing music
     this.analyser.getByteFrequencyData(this.freqs); // 频率数据
     this.analyser.getByteTimeDomainData(this.times); // 波形数据
+}
 
-    // this.drawFreq();
-    // this.drawTime();
-    // this.drawSolar();
+Visualizer.prototype.draw = function(width, height) {
+    this.width = width;
+    this.height = height;
 }
 
 Visualizer.prototype.drawFreq = function() {
