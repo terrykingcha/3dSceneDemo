@@ -16,15 +16,15 @@
     window.visualizer = visualizer;
 
     // var sample1 = new SceneSample1(scene.scene, visualizer);
-    var sample2 = new SceneSample2(scene.scene, visualizer);
-
+    var sample = new SceneSample2(scene.scene, visualizer);
+    var control = new SceneControl2(scene.camera);
 
     (function tick() {
         requestAnimationFrame(tick);
 
         // sample1.tick();
-        sample2.tick();
+        sample.tick();
+        control.update();
         scene.render();
-        scene.updateControls();
     })();
 })();

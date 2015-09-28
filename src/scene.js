@@ -17,12 +17,13 @@ function Scene() {
     this.renderer = renderer;
 
     /* 摄像头 */
-    var VIEW_ANGLE = 100;
+    var VIEW_ANGLE = 45;
     var ASPECT = WIDTH / HEIGHT;
     var NEAR = 1;
     var FAR = 100000;
     var camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR); /* 摄像机视角，视口长宽比，近切面，远切面 */
-    camera.position.set(500, 500, 1000); //放置位置
+    camera.position.set(0, 0, 0); //放置位置
+    // camera.lookAt(new THREE.Vector3(0, 0, 0));
     scene.add(camera);
     this.camera = camera;
 
@@ -31,22 +32,6 @@ function Scene() {
     light.position.set(-100, 200, 100);
     scene.add(light);
     this.light = light;
-
-    /* 控制器 */
-    var constrols;
-    controls = new THREE.TrackballControls(camera);
-    // controls.rotateSpeed = 1.0;
-    // controls.zoomSpeed = 1.2;
-    // controls.panSpeed = 0.8;
-    controls.noZoom = false;
-    controls.noPan = true;
-    // controls.staticMoving = false;
-    // controls.dynamicDampingFactor = 0.3;
-    // controls.keys = [65, 83, 68];
-    controls.addEventListener('change', function() {
-        that.render();
-    });
-    this.controls = controls;
 
     this.resize = function() {
         WIDTH = window.innerWidth;
@@ -58,10 +43,6 @@ function Scene() {
 
     this.render = function () {
         renderer.render(scene, camera);
-    }
-
-    this.updateControls = function() {
-        controls.update();
     }
 }
 
