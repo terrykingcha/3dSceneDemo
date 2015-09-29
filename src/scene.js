@@ -17,12 +17,12 @@ function Scene() {
     this.renderer = renderer;
 
     /* 摄像头 */
-    var VIEW_ANGLE = 45;
+    var VIEW_ANGLE = 30;
     var ASPECT = WIDTH / HEIGHT;
     var NEAR = 1;
     var FAR = 100000;
     var camera = new THREE.PerspectiveCamera(VIEW_ANGLE, ASPECT, NEAR, FAR); /* 摄像机视角，视口长宽比，近切面，远切面 */
-    camera.position.set(0, 0, 0); //放置位置
+    camera.position.set(0, 0, 10000); //放置位置
     // camera.lookAt(new THREE.Vector3(0, 0, 0));
     scene.add(camera);
     this.camera = camera;
